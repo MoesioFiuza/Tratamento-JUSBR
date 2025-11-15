@@ -1,3 +1,14 @@
+// Detectar base path automaticamente baseado na URL atual
+const getBasePath = () => {
+    const path = window.location.pathname;
+    if (path.includes('/jusbr')) {
+        return '/jusbr';
+    }
+    return '';
+};
+
+const basePath = getBasePath();
+
 // Função para atualizar o nome do arquivo com animação
 function updateFileName(input, displayElement) {
     if (input.files && input.files.length > 0) {
@@ -167,7 +178,7 @@ function setupFormValidation() {
         formData.append('CapaSimplesFile', capaFileInput.files[0]);
         formData.append('ExtraMovimentacoesFile', extraFileInput.files[0]);
 
-        fetch('./Home/Processar', {
+        fetch(`${basePath}/Home/Processar`, {
             method: 'POST',
             body: formData
         })
