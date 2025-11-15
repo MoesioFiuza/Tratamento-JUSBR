@@ -1,0 +1,91 @@
+@model JUSBR_TRAT.Models.ProcessamentoViewModel
+
+@{
+    ViewData["Title"] = "Tratamento JUS BR";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    <i class="bi bi-file-earmark-spreadsheet"></i>
+                    Tratamento de Planilhas JUS BR
+                </h3>
+            </div>
+            <div class="card-body">
+                <form id="processForm" action="/Home/Processar" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                    <div class="file-upload-wrapper">
+                        <label class="file-upload-label">
+                            <i class="bi bi-file-earmark-excel" style="color: var(--primary);"></i>
+                            Planilha CapaSimples
+                        </label>
+                        <div class="file-upload-area" id="capaUploadArea">
+                            <input type="file" 
+                                   name="CapaSimplesFile" 
+                                   accept=".xlsx,.xls" 
+                                   required 
+                                   id="capaFileInput" />
+                            <div class="file-upload-content">
+                                <div class="file-upload-icon">
+                                    <i class="bi bi-cloud-upload"></i>
+                                </div>
+                                <div class="file-upload-text">
+                                    Clique para selecionar ou arraste o arquivo aqui
+                                </div>
+                                <div class="file-upload-hint">
+                                    Formatos aceitos: .xlsx, .xls
+                                </div>
+                                <div class="file-name" id="capaFileName" style="display: none;">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="CapaSimplesFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="file-upload-wrapper">
+                        <label class="file-upload-label">
+                            <i class="bi bi-file-earmark-spreadsheet" style="color: var(--success);"></i>
+                            Planilha Extra_Movimentações
+                        </label>
+                        <div class="file-upload-area" id="extraUploadArea">
+                            <input type="file" 
+                                   name="ExtraMovimentacoesFile" 
+                                   accept=".xlsx,.xls" 
+                                   required 
+                                   id="extraFileInput" />
+                            <div class="file-upload-content">
+                                <div class="file-upload-icon">
+                                    <i class="bi bi-cloud-upload"></i>
+                                </div>
+                                <div class="file-upload-text">
+                                    Clique para selecionar ou arraste o arquivo aqui
+                                </div>
+                                <div class="file-upload-hint">
+                                    Formatos aceitos: .xlsx, .xls
+                                </div>
+                                <div class="file-name" id="extraFileName" style="display: none;">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="ExtraMovimentacoesFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-process" id="submitBtn">
+                            <i class="bi bi-gear-fill"></i>
+                            <span id="btnText">Processar e Baixar Planilha Tratada</span>
+                            <span class="spinner-border spinner-border-sm" id="loadingSpinner" style="display: none;"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
