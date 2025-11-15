@@ -167,7 +167,7 @@ function setupFormValidation() {
         formData.append('CapaSimplesFile', capaFileInput.files[0]);
         formData.append('ExtraMovimentacoesFile', extraFileInput.files[0]);
 
-        fetch('/Home/Processar', {
+        fetch('./Home/Processar', {
             method: 'POST',
             body: formData
         })
